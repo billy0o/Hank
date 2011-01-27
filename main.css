@@ -1,0 +1,365 @@
+::selection {
+        background: #7ca52a; /* Safari */
+        }
+::-moz-selection {
+        background: rgba(255,255,255,0.2); /* Firefox */
+}
+
+body {
+	background: #000 url('images/background.png');
+	padding: 0;
+	
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+padding {
+	display: block;
+	width: 1000px;
+	height: 1px;
+	margin-bottom: -1px;
+}
+
+left {
+	position: absolute;
+	right: 50%;
+	margin-right: -100px;
+	float: left;
+	width: 500px;
+	text-align: right;
+}
+
+right {
+	position: absolute;
+	left: 50%;
+	float: right;
+	width: 400px;
+	margin-left: 100px;
+	text-align: left;
+}
+
+
+body > header {
+	display: block;
+	width: 100%;
+	height: 64px;
+	background: url('images/head.png') repeat-x 0 0;
+	min-width: 1000px;
+	border-bottom: 1px solid #050505;
+}
+
+body > header right {
+	height: 64px;
+	padding-top: 1px;
+	background: url('images/shadow-in-menu.png') no-repeat 0 0;
+}
+
+body > header right p {
+	display:table-cell;
+	width: 340px;
+	height: 32px;
+	
+	padding-left: 30px;
+	
+	color: #888;
+	text-shadow: #111 1px 1px 1px;
+	font-size: 8pt;
+	vertical-align:middle;
+}
+
+body > header right strong {
+	font-weight: bold;
+	
+	color: #999;
+}
+
+body > header right a {
+	color: #aaa;
+	
+}
+
+body > header right a:hover,
+body > header right a:visited {
+	text-decoration: none;
+}
+
+body > header right #last-tweet {
+	height: 32px;
+	display: block;
+	background: url('images/twitter-icon.png') no-repeat 10px 7px;
+}
+
+body > header right #last-song {
+	height: 32px;
+	display: block;
+	background: url('images/music-icon.png') no-repeat 8px 9px;
+	margin-top: -4px;
+}
+
+body > header h1 {
+	background: url('images/title.png') no-repeat center;
+	width: 222px;
+	height: 37px;
+	overflow: hidden;
+	display: block;
+	float:right;
+	
+	padding-top: 12px;
+	padding-right: 4px;
+	
+	font-size: 26.5px;
+	color: rgba(0,0,0,0);
+}
+
+body > header ul#head-menu {
+	position: absolute;
+	top: 16px;
+	width: 100%;
+	right: 230px;
+	
+	list-style-type: none;
+}
+
+body > header ul#head-menu a {
+	margin-left: 10px;
+	padding: 3px;
+	padding-top: 1px;
+	
+	font-family: Tahoma;
+	color: #bababa;
+	font-size: 9pt;
+	text-decoration: none;
+	text-shadow: #000 1px 1px 2px;
+	
+	opacity: 0.5;
+}
+
+body > header ul#head-menu a:hover {
+	background:rgba(0,0,0,0.30);
+}
+
+body > header ul#head-menu a:active {
+	background:rgba(0,0,0,0.50);
+}
+
+
+body > header info.author {
+	display: block;
+	position: absolute;
+	top: 35px;
+	right: 3px;
+	clear: right;
+	
+	width: 100%;
+	width: 132px;
+	height: 20px;
+	background: url('images/author.png') no-repeat right -4px;
+	
+	padding-right: 8px;
+	font-size: 14px;
+	color: rgba(0,0,0,0);
+}
+
+
+body > header info.selected-category {	
+	position: absolute;
+	top: 45px;
+	right: 0;
+	display: block;
+	width: 485px;
+	clear: both;
+	float: right;
+	padding-left: 15px;
+	
+	background: url('images/select-cat-grad.png') no-repeat;
+	
+	text-align: left;
+	color: #515131;
+	font-size: 12pt;
+	text-shadow: #000 0px 0px 2px;
+}
+
+body > header info.selected-category:hover {
+	cursor: default;
+	
+	color: #59593b;
+}
+
+body > header menu.select-category {
+	position: absolute;
+	top: 66px;
+	right: 0;
+	width: 500px;
+	clear: both;
+	float: right;
+	text-align: left;
+}
+
+body > header menu.select-category case {
+	float: left;
+	clear: both;
+	overflow: visible;
+	background: url('images/select-cat-grad.png') no-repeat;
+}
+
+body > header menu.select-category case a {
+	display: block;
+	clear: both;
+	padding-left: 15px;
+	
+	color: #555;
+	font-size: 12pt;
+	background: rgba(255,255,255,0.01);
+	
+	text-decoration: none;
+	margin: 2px 0;
+}
+
+
+content post {
+	width: 100%;
+	display: block;				
+}
+
+content header {
+	display: inline-block;
+	padding-top: 40px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+content header date {
+	display: block;
+	
+	text-align: left;
+	
+	color: #5b5b5b;
+	font-family: Arial, sans-serif;
+	font-size: 7pt;
+	
+}
+
+content header h1 {
+	display: inline-block;
+	
+	border-bottom: 1px solid #353535;
+	
+	padding-bottom: 2px;
+	font-size: 14pt;
+	color: #6d8c32;
+	max-width: 400px;
+	font-family: Tahoma, sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+content header h1:hover {
+	border-color: #444f2e;
+	cursor: default;
+}
+
+content header tags {
+	display: block;
+	margin-top: -4px;
+}
+
+content post {
+		position: relative;
+}
+
+content header comments {
+	display: inline-block;
+	width: 97px;
+	height: 82px;
+	
+	background: url('images/comments-counter.png') no-repeat;
+	position: absolute;
+	top: 10px;
+	left: -50px;
+	text-align: center;
+	color: #1a1a1a;
+	font-family: Georgia;
+	font-size: 17pt;
+	padding-top: 24px;
+}
+
+content header tags a {
+	margin-left: 5px;
+	
+	text-decoration: none;
+	color: #5b5b5b;
+	font-weight: normal;
+	font-size: 8pt;
+}
+
+content header tags a:hover {
+	color: #777;
+}
+	content post p {
+		width: 475px;
+		margin-bottom: 10px;
+		text-align: justify;
+		color: #ccc;
+		font-size: 10pt;
+		font-family: Tahoma;
+		line-height: 14px;
+		text-shadow: #000 1px 1px 0px;
+		padding-left: 14px;
+	}
+
+content post h2 {
+	display: block;
+	
+	height: 20px;
+	margin-left: 5px;
+	margin-top: 20px;
+	margin-bottom: 6px;
+	padding-left: 6px;
+	
+	text-align: left;
+	font-family: Tahoma, sans-serif;
+	text-transform: uppercase;
+	font-weight: 400;
+	color: #aaa;
+	
+	border-left: 3px solid #111;
+}
+
+
+content > right {
+	display: block;
+	background: url('images/menu-border-left.png') no-repeat 0 10px;
+	height: 300px;
+	margin-left: 101px;
+}
+
+content > right panel {
+	display: block;
+	padding-top: 30px;
+}
+
+content > right panel a {
+	display: block;
+
+	font-size: 11pt;
+	padding: 1px 0;
+	font-weight: bold;
+	color: #6c6c6c;
+	font-family: Arial, Tahoma, sans-serif;
+	text-decoration: none;
+	padding-left: 30px;
+	
+	background:url('images/menu-rss-icon.png') no-repeat 10px 2px ;
+}
+
+content > right panel a:hover {
+	border-right: 4px solid #111;
+	color: #777;
+	text-shadow: #333 0 0 10px;
+}
+	content > right panel a:active {
+	color: #6d6d6d;
+	text-shadow: #000 0 0 3px;
+	}
+
+
+
