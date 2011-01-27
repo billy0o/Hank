@@ -144,11 +144,23 @@ function chlimit($text, $limit) {
 						
 						$user = "billy0o";	
 						$data = file_get_contents("http://www.lastfm.pl/user/{$user}");
-
-						if(preg_match('/<table class="tracklist withimages" id="recentTracks">.*?<td class="subjectCell.*?<a href="(.*?)">(.*?)<\\/a>.*?<a href="(.*?)">(.*?)<\\/a>[\s\t\r\n]*<\/td>[\s\t\r\n]*<td class="lovedCell[^>]*>[\s\t\r\n]*(<img)?/s', $data, $match)) {
-
-
-							$song = "<strong><a href=\"http://www.last.fm/".$match[1]."\">".$match[2]."</a></strong> &ndash; <a href=\"http://www.last.fm/".$match[3]."\">".$match[4]."</a>";
+						if(preg_match('/<table class="tracklist withimages" id="recentTracks">.*?<td class="subjectCell.*?<a href="(.*?)">(.*?)<\\/a>.*?<a href="(.*?)">(.*?)<\\/a>[\s\t\r\n]*<\/td>[\s\t\r\n]*<td class="lovedCell[^>]*>[\s\t\r\n]*(<img)?/su', $data, $match)) {
+							$artist = $match[2];
+							$artistURI = $match[1];
+							$song = $match[4];
+							$songURI = $match[3];
+							
+							$song = strip_tags($song); // rids auto-correct information
+							
+							
+							$artist = chlimit($artist, 30);
+							
+							if(strlen($artist) + strlen($song) > 65) {
+								$song = chlimit($song, 65 - strlen($artist));
+							}
+							
+							
+							$song = "<strong><a href=\"http://www.last.fm/".$artistURI."\">".$artist."</a></strong> &ndash; <a href=\"http://www.last.fm/".$songURI."\">".$song."</a>";
 						
 							if($match[5] != false)
 								$isLoved = true;
