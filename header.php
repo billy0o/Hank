@@ -75,11 +75,58 @@ function chlimit($text, $limit) {
 				<a href="http://twitter.com/billy0o"></a>
 		 		<p>
 		 			<?php 
-					$username='billy0o'; // set user name
-					$format='json'; // set format
-					$tweet=json_decode(file_get_contents("http://api.twitter.com/1/statuses/user_timeline/{$username}.{$format}")); // get tweets and decode them into a variable
+						
+						class HankCache {
+							function set($id, $data, $lifetime) {
+								$this -> cache[$id] = array($data, $time + $lifetime);
+								
+								$handle = fopen(dirname(__FILE__) . "/cache.".md5($id), "w+");
+								fwrite($handle, (time() + $lifetime)."\n".serialize($data));
+								fclose($handle);
+							}
+							
+							function get($id) {
+								$file = dirname(__FILE__) . "/cache." . md5($id);
+								
+								if(!file_exists($file)) {
+									return false;
+								}
+								
+								$handle = fopen($file, "r");
+								
+								$freshtime = fgets($handle, 11);
+								
+								
+								if($freshtime < time()) {
+									return false;
+								}
+								
+								$content = file_get_contents($file);
+								
+								list($freshtime, $data) = explode("\n", $content, 2);
+								
+								return unserialize($data);
+							}
+						}
+						
+						$cache = new HankCache();
+						
+						$cached =  $cache -> get("last-tweet");
+						
+						if($cached) {
+							$tweet_formated = $cached;
+						} else {
+							$username='billy0o'; // set user name
+							$format='json'; // set format
+							$tweet=json_decode(file_get_contents("http://api.twitter.com/1/statuses/user_timeline/{$username}.{$format}")); // get tweets and decode them into a variable
 
-					echo chlimit($tweet[0]->text, 140);
+							$tweet_formated = chlimit($tweet[0]->text, 140);
+					
+							$cache -> set("last-tweet", $tweet_formated, 10 * 60);
+							
+						}
+						
+						echo $tweet_formated;
 					?>
 				</p>
 			</div>
@@ -87,27 +134,43 @@ function chlimit($text, $limit) {
 						<a href="http://www.lastfm.pl/user/billy0o"></a>
 				 		<p>
 					<?php
-					$user = "billy0o";	
-					$data = file_get_contents("http://www.lastfm.pl/user/{$user}");
+					$isLoved = false;
+					$cached =  $cache -> get("last-song");
 					
-					if(preg_match('/<table class="tracklist withimages" id="recentTracks">.*?<td class="subjectCell.*?<a href="(.*?)">(.*?)<\\/a>.*?<a href="(.*?)">(.*?)<\\/a>[\s\t\r\n]*<\/td>[\s\t\r\n]*<td class="lovedCell[^>]*>[\s\t\r\n]*(<img)?/s', $data, $match)) {
+					if($cached) {
+						$song = $cached[0];
+						$isLoved = $cached[1];
+					} else {
 						
+						$user = "billy0o";	
+						$data = file_get_contents("http://www.lastfm.pl/user/{$user}");
+
+						if(preg_match('/<table class="tracklist withimages" id="recentTracks">.*?<td class="subjectCell.*?<a href="(.*?)">(.*?)<\\/a>.*?<a href="(.*?)">(.*?)<\\/a>[\s\t\r\n]*<\/td>[\s\t\r\n]*<td class="lovedCell[^>]*>[\s\t\r\n]*(<img)?/s', $data, $match)) {
+
+
+							$song = "<strong><a href=\"http://www.last.fm/".$match[1]."\">".$match[2]."</a></strong> &ndash; <a href=\"http://www.last.fm/".$match[3]."\">".$match[4]."</a>";
 						
-						echo "<strong><a href=\"http://www.last.fm/".$match[1]."\">".$match[2]."</a></strong> &ndash; <a href=\"http://www.last.fm/".$match[3]."\">".$match[4]."</a>";
-						
-						if($match[5] != null) {
-							echo "<img src=\"";
-							bloginfo( 'template_directory' );
-							echo "/images/header-music-like.png\" alt=\"Lubię ten utwór!\"/>";
+							if($match[5] != false)
+								$isLoved = true;
+							
+							/*<td class="lovedCell">
+							                            <img*/
+							//echo preg_replace("/(.*?)\&ndash;/", "<strong>\\1</strong> &ndash;", chlimit($artist[1]." &ndash; ".$name[1], 75));
 						}
-						/*<td class="lovedCell">
-						                            <img*/
-						//echo preg_replace("/(.*?)\&ndash;/", "<strong>\\1</strong> &ndash;", chlimit($artist[1]." &ndash; ".$name[1], 75));
+						
+						else
+							$song = "<strong>Error getting the current song</strong>";
+						
+						$cache -> set("last-song", array($song, $isLoved), 2 * 60);
 					}
 					
-					else
-						echo "<strong>Error getting the current song</strong>"
-					
+					echo $song;
+				
+					if($isLoved == "loved") {
+						echo "<img src=\"";
+						bloginfo( 'template_directory' );
+						echo "/images/header-music-like.png\" alt=\"Lubię ten utwór!\"/>";
+					}
 					?>
 				 		</p>
 				 	</div>
