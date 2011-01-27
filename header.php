@@ -8,6 +8,13 @@
  * @subpackage Hank
  * @since Hanm 0.1b
  */
+
+function chlimit($text, $limit) {
+	if(strlen($text) <= $limit) 
+		return $text;
+		
+	return substr($text, 0, $limit - 3) . "...";
+}
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -30,7 +37,7 @@
 	<padding></padding>
 	<header>
 		<left>
-			<h1>hank of bullshits</h1>
+			<h1><a href="<?php bloginfo('url'); ?>">hank of bullshits</a></h1>
 			
 			<ul id="head-menu">
 				<?php wp_list_pages(array(
@@ -65,12 +72,43 @@
 		</left>
 		<right>
 		 	<div id="last-tweet">
+				<a href="http://twitter.com/billy0o"></a>
 		 		<p>
-		 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pretium cursus leo at ornare. Fusce sagittis magna vel eros ornare eget metus. </p>
-		 	</div>
+		 			<?php 
+					$username='billy0o'; // set user name
+					$format='json'; // set format
+					$tweet=json_decode(file_get_contents("http://api.twitter.com/1/statuses/user_timeline/{$username}.{$format}")); // get tweets and decode them into a variable
+
+					echo chlimit($tweet[0]->text, 140);
+					?>
+				</p>
+			</div>
 				 	<div id="last-song">
+						<a href="http://www.lastfm.pl/user/billy0o"></a>
 				 		<p>
-							<strong>A.J.K.S.</strong> - Wszyscy Prawdziwi Chcą Mnie Zajebać
+					<?php
+					$user = "billy0o";	
+					$data = file_get_contents("http://www.lastfm.pl/user/{$user}");
+					
+					if(preg_match('/<table class="tracklist withimages" id="recentTracks">.*?<td class="subjectCell.*?<a href="(.*?)">(.*?)<\\/a>.*?<a href="(.*?)">(.*?)<\\/a>[\s\t\r\n]*<\/td>[\s\t\r\n]*<td class="lovedCell[^>]*>[\s\t\r\n]*(<img)?/s', $data, $match)) {
+						
+						
+						echo "<strong><a href=\"http://www.last.fm/".$match[1]."\">".$match[2]."</a></strong> &ndash; <a href=\"http://www.last.fm/".$match[3]."\">".$match[4]."</a>";
+						
+						if($match[5] != null) {
+							echo "<img src=\"";
+							bloginfo( 'template_directory' );
+							echo "/images/header-music-like.png\" alt=\"Lubię ten utwór!\"/>";
+						}
+						/*<td class="lovedCell">
+						                            <img*/
+						//echo preg_replace("/(.*?)\&ndash;/", "<strong>\\1</strong> &ndash;", chlimit($artist[1]." &ndash; ".$name[1], 75));
+					}
+					
+					else
+						echo "<strong>Error getting the current song</strong>"
+					
+					?>
 				 		</p>
 				 	</div>
 		</right>
