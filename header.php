@@ -50,19 +50,20 @@ function chlimit($text, $limit) {
 			<h1><a href="<?php bloginfo('url'); ?>">hank of bullshits</a></h1>
 			
 			<ul id="head-menu">
-				<?php wp_list_pages(array(
-			    'depth'        => 0,
-			    'show_date'    => false,
-			    'child_of'     => 0,
-			    'exclude'      => 0,
-			    'include'      => 0,
-			    'title_li'     => 0,
-			    'echo'         => 1,
-			    'authors'      => 0,
-			    'sort_column'  => 'menu_order, post_title',
-			    'link_before'  => "",
-			    'link_after'   => "",
-			    'walker' =>  0)); ?>
+				<?php $pages = get_pages();
+				
+				global $_page; 
+			  foreach ($pages as $page) {
+			  	$option = '<li><a href="'.get_page_link($page->ID);
+				if($page->ID == $_GET['page_id']) {
+					$option .= "\" class=\"active\"";
+				}
+				$option .= '">';
+				$option .= $page->post_title;
+				$option .= '</a></li>';
+				echo $option;
+			  }
+			  ?>
 			</ul>
 		
 			<info class="author">by billy</info>

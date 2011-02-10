@@ -178,8 +178,13 @@ body > header ul#head-menu a:hover {
 	background:rgba(0,0,0,0.30);
 }
 
-body > header ul#head-menu a:active {
+body > header ul#head-menu a:active{
 	background:rgba(0,0,0,0.70);
+}
+
+body > header ul#head-menu a.active,
+body > header ul#head-menu a.active:hover {
+	background:rgba(0,0,0,0.40);
 }
 
 
@@ -264,8 +269,12 @@ content post {
 	width: 420px;
 	display: block;	
 	margin-top: 10px;
-	background: url('images/post-bottom.png') no-repeat 0 bottom;
+	
+}
+
+content loop post {
 	padding-bottom: 30px;
+	background: url('images/post-bottom.png') no-repeat 0 bottom;
 }
 
 content header {
