@@ -31,6 +31,16 @@ function chlimit($text, $limit) {
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_directory' ); ?>/reset.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_directory' ); ?>/main.css" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+	<script type="text/javascript" charset="utf-8">
+		document.createElement("header");
+		document.createElement("padding");
+		document.createElement("left");
+		document.createElement("menu");
+		document.createElement("case");
+		document.createElement("info");
+		document.createElement("post");
+		document.createElement("date");
+	</script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -58,7 +68,7 @@ function chlimit($text, $limit) {
 			<info class="author">by billy</info>
 			
 		
-			<info class="selected-category">frontend web techniques</info>
+			<info class="selected-category">webdeveloping <small> > publikacje</small></info>
 			
 			<!--
 			<menu class="select-category">
@@ -173,7 +183,7 @@ function chlimit($text, $limit) {
 						else
 							$song = "<strong>Error getting the current song</strong>";
 						
-						$cache -> set("last-song", array($song, $isLoved), 2 * 60);
+						$cache -> set("last-song", array($song, $isLoved), 60 * 60); // just temporarily
 					}
 					
 					echo $song;
