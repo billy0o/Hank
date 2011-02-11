@@ -1,7 +1,6 @@
 <!-- Start the Loop. -->
 <loop>
 	<?php
-	require_once "polska-data.php";
 
 	 if ( have_posts() ) while ( have_posts() ) : the_post();?>
 		<post>
@@ -11,7 +10,7 @@
 				echo polskaData(strtotime($post -> post_date_gmt), 24 * 3600);
 
 				?></date>
-			    <h1><?php the_title(); ?></h1>
+			    <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 				<tags>
 					<?php
 
@@ -29,7 +28,7 @@
 						$posttags = false;
 
 						$allowedCategories = array();
-						$childs = get_categories('child_of=' . HUNK_ACTIVECAT);
+						$childs = get_categories('child_of=' . 4);
 
 
 					 	foreach ($childs as $category) {
@@ -39,7 +38,7 @@
 
 						foreach((get_the_category()) as $category) 
 							if(in_array($category -> cat_ID, $allowedCategories))
-						    	$html .= "<a href=\"\" alt=\"\" class='category'> {$category->cat_name} </a>";
+						    	$html .= " <a href=\"\" alt=\"\" class='category'> {$category->cat_name} </a>";
 
 						if($html == "") {
 							$html = "no tags";
