@@ -63,14 +63,17 @@ get_header(); ?>
 					<?php if($post -> comment_count > 0 || 1 ) {?><comments><?=$post -> comment_count;?></comments><?php } ?>
 				</header>
 				<?php the_content("more »"); ?>
+				
+				<br />
 			</post>
 			
 			
-			<?php comments_template( '', true ); ?>
 
 		<?php endwhile; ?>
-	</left>
+	</left>	
 	<right>
-	<?php get_sidebar(); ?></right>
+	<?php get_sidebar(); ?></right>	
+		<br />
+		<?php comments_template( '', true ); ?>
 </content>
 
