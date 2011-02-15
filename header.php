@@ -184,7 +184,7 @@ function chlimit($text, $limit) {
 						else
 							$song = "<strong>Error getting the current song</strong>";
 						
-						$cache -> set("last-song", array($song, $isLoved), 60 * 60); // just temporarily
+						$cache -> set("last-song", array($song, $isLoved), 60 * 60 * 24); // just temporarily
 					}
 					
 					echo $song;

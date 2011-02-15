@@ -1,20 +1,18 @@
 <?php
 /**
- * The Template for displaying all single posts.
- *
- * @package WordPress
- * @subpackage Twenty_Ten
- * @since Twenty Ten 1.0
+ * 
+ * 	
+ * 
+ * @author biLLy
  */
-require_once "polska-data.php";
-
 get_header(); ?>
 <content>
 	<left>
 		
-
+		
 		<!-- Start the Loop. -->
-		<?php if ( have_posts() ) while ( have_posts() ) : the_post();?>
+		<?php 
+		if ( have_posts() ) while ( have_posts() ) : the_post();?>
 			<post class="single">
 				<header>
 					<date><?php 

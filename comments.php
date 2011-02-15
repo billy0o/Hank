@@ -4,11 +4,14 @@ get_comments_number()
 comment_form();
 */
 ?>
+<comments>
+	
+<?php 
 
-<?php if ( have_comments() )
+if ( have_comments() )
+	wp_list_comments( array( 'callback' => 'hank_comment' ) );
 
-					wp_list_comments( array( 'callback' => 'twentyten_comment' ) );
-					
-					
-	?>
 
+?>
+
+</comments>

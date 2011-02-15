@@ -21,7 +21,7 @@ function polskaData($time = false, $relative = false) {
 	
 //	return $relative . "  " . ($now - $time);
 	
-	if($now > $time and (($relative === true) or 
+	if($now > $time and (($relative === true) or #7e7e7e
 		(is_int($relative) && ($relative > ($now - $time))))) {
 		
 		if($now - $time < 10) {
@@ -125,6 +125,44 @@ function polskaData($time = false, $relative = false) {
 }
 
 
+
+function hank_comment($comment)
+{
+	
+	$GLOBALS['comment'] = $comment; 
+	
+	?>
+	
+	<comment <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+		<number id="comments-<?php echo $comment -> comment_post_ID; ?>"><?php echo $comment -> comment_post_ID; ?></number>
+		<h1>
+			<author>
+				<name>
+					<?php
+						if($comment -> comment_author_url) {
+							echo "<a href=\"" . $comment -> comment_author_url . "\" title=\"Visit author's page\">";
+							echo $comment -> comment_author;
+							echo "</a>";
+						} else {
+							echo $comment -> comment_author; 
+						}
+					?>
+				</name>
+				<avator></avator>
+			</author>
+		</h1>
+		
+		<time>
+			<?php echo polskaData(strtotime($comment -> comment_date_gmt))?>
+		</time>
+		
+		<content></content>
+	</comment>
+	
+	
+	
+	<?php
+}
 
 
 
