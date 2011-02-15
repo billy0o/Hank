@@ -23,7 +23,12 @@ padding {
 	
 	margin-bottom: -64px;
 }
-left {
+
+br {
+	clear: both;
+}
+
+body > header left {
 	width: 420px;	
 
 	float: left;
@@ -36,7 +41,7 @@ left {
 
 
 
-right {
+body > header right {
 	width: 400px;
 	
 	position: absolute;
@@ -278,19 +283,39 @@ body > header menu.select-category case a {
 	margin: 2px 0;
 }
 
+content {
+	display: block;
+	width: 900px;
+	height: 500px;
+	
+	padding-left: 30px;
+	
+	margin: 0 auto;
+}
+
+content left {
+	width: 420px;	
+
+	float: left;
+	margin-left: 62px;
+	
+	text-align: right;
+}
+
+
 
 content post {
 	width: 420px;
 	display: block;	
 	margin-top: 10px;
-	
+	margin-left: 18px;
 }
 
 content loop post {
 	padding-bottom: 30px;
 	background: url('images/post-bottom.png') no-repeat 0 bottom;
 	
-	text-align: left;
+	text-align: right;
 }
 
 .single content post {
@@ -299,9 +324,10 @@ content loop post {
 
 content header {
 	display: inline-block;
+	
 	padding-top: 40px;
-	padding-right: 10px;
 	padding-bottom: 10px;
+	padding-right: 15px;
 }
 
 content header date {
@@ -375,7 +401,7 @@ content header tags	{
 	margin-left: 5px;
 }
 
-content header tags a{
+content header tags a {
 	color: inherit;
 	margin-left: 5px;
 	text-decoration: none;
@@ -387,6 +413,7 @@ font-weight: normal;
 	clear: both;
 	margin-top: 1px;
 	margin-left: 3px;
+	
 	background: url('images/post-cat-tag-icon.png') no-repeat;
 	height: 13px;
 	padding-left: 13px;
@@ -410,7 +437,7 @@ content header tags a:hover {
 
 
 content post p {
-	width: 410px;
+	width: 405px;
 	margin-bottom: 10px;
 	text-align: justify;
 	color: #d2d2d2;
@@ -465,28 +492,41 @@ content post h2 {
 }
 
 
-content > comments {
+body > comments {
 	display: block;
+	
 	
 }
 
-content comments comment {
+comments comment {
 	display: block;
-	width: 610px;
+	width: 530px;
 	height: 130px;
+	
 	margin-left: -120px;
 	
-	background: url('images/comment-top') no-repeat;
+	background: url('images/comment-top.png') no-repeat top right;
 	
+	text-align: left;
+}
+
+comments comment h2 {
+		
 }
 
 /* Right */
 
 content > right {
 	display: block;
-	background: url('images/menu-border-left-bottom.png') no-repeat 2px bottom;
-	margin-left: 59px;
+	width: 407px;	
+
+	float: right;
+	margin-left: 10px;
 	padding-bottom: 35px;
+	
+	background: url('images/menu-border-left-bottom.png') no-repeat 2px bottom;
+	
+	text-align: left;
 	
 }
 
