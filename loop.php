@@ -24,7 +24,7 @@
 								$html .= "<a href='{$tag_link}' title='{$tag->name}' class='{$tag->slug}'>{$tag->name}</a>";
 							}
 
-
+						
 						$posttags = false;
 
 						$allowedCategories = array();
@@ -38,7 +38,7 @@
 
 						foreach((get_the_category()) as $category) 
 							if(in_array($category -> cat_ID, $allowedCategories))
-						    	$html .= " <a href=\"\" alt=\"\" class='category'> {$category->cat_name} </a>";
+						    	$html .= "<a href=\"\" alt=\"\" class='category'> {$category->cat_name} </a>";
 
 						if($html == "") {
 							$html = "no tags";
