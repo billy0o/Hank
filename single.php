@@ -12,7 +12,11 @@ get_header(); ?>
 		
 		<!-- Start the Loop. -->
 		<?php 
-		if ( have_posts() ) while ( have_posts() ) : the_post();?>
+		if ( have_posts() ) while ( have_posts() ) : the_post();
+		global $ID;
+		$ID = $post -> ID;
+		?>
+		
 			<post class="single">
 				<header>
 					<date><?php 
@@ -48,7 +52,7 @@ get_header(); ?>
 
 							foreach((get_the_category()) as $category) 
 								if(in_array($category -> cat_ID, $allowedCategories))
-							    	$html .= "<a href=\"\" alt=\"\" class='category'> {$category->cat_name} </a>";
+							    	$html .= "<a href=\"\" alt=\"\" class='category'>{$category->cat_name}</a>";
 
 							if($html == "") {
 								$html = "no tags";
@@ -57,23 +61,26 @@ get_header(); ?>
 							echo $html;
 
 						?>
-
-
-						</tags>
-					<?php if($post -> comment_count > 0 || 1 ) {?><comments><?=$post -> comment_count;?></comments><?php } ?>
+</tags>
+					<?php if($post -> comment_count > 0 || 1 ) {?><comments><?php get_comments_number(); ?></comments><?php } ?>
 				</header>
 				<?php the_content("more »"); ?>
-				
 				<br />
 			</post>
 			
 			
+		<?php 
+		if ( have_comments() ) wp_list_comments( array( 'callback' => 'hank_comment' ) );
+		
+		comments_template( '', true ); 
 
-		<?php endwhile; ?>
+		endwhile; ?>
 	</left>	
 	<right>
 	<?php get_sidebar(); ?></right>	
 		<br />
-		<?php comments_template( '', true ); ?>
+		<comments>
+		<?php hank_comment("view"); ?>
+        </comments>
 </content>
 

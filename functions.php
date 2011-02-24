@@ -124,19 +124,29 @@ function polskaData($time = false, $relative = false) {
 	
 }
 
-
-
-function hank_comment($comment)
-{
+function hank_comment($arg)
+{		
+	static $count = 1, $view = "";
+	
+	if($arg == "view") {
+		
+		echo $view;
+	}
+	
+	$comment = $arg;
+	
 	
 	$GLOBALS['comment'] = $comment; 
 	
+
+	ob_start();
 	?>
 	
 	<comment <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-		<number id="comments-<?php echo $comment -> comment_post_ID; ?>"><?php echo $comment -> comment_post_ID; ?></number>
 		<h1>
+			<number id="comments-<?php echo $count; ?>"><?php echo $count; ?></number>
 			<author>
+				<avator><?php echo get_avatar( $comment -> comment_author_email, 17, 'blank'); ?></avator>
 				<name>
 					<?php
 						if($comment -> comment_author_url) {
@@ -148,20 +158,34 @@ function hank_comment($comment)
 						}
 					?>
 				</name>
-				<avator></avator>
+				<time>
+					<?php echo polskaData(strtotime($comment -> comment_date_gmt), true)?>
+				</time>
 			</author>
 		</h1>
 		
-		<time>
-			<?php echo polskaData(strtotime($comment -> comment_date_gmt))?>
-		</time>
 		
-		<content></content>
+		<content>
+			<p>
+				<?php
+					
+					comment_text();
+
+				?>
+			</p>
+		</content>
+		
+		<footer>
+		</footer>
 	</comment>
 	
 	
 	
 	<?php
+	
+	$view .= ob_get_contents();
+	ob_end_clean();
+	$count++;
 }
 
 

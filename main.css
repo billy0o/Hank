@@ -286,7 +286,6 @@ body > header menu.select-category case a {
 content {
 	display: block;
 	width: 900px;
-	height: 500px;
 	
 	padding-left: 30px;
 	
@@ -307,22 +306,21 @@ content left {
 
 
 content post {
+	display: block;
 	width: 420px;
-	display: block;	
+	
 	margin-top: 10px;
 	margin-left: 18px;
-}
-
-content loop post {
-	padding-bottom: 30px;
-	background: url('images/post-bottom.png') no-repeat 0 bottom;
 	
 	text-align: right;
 }
 
-.single content post {
-	min-height: 400px;
+content loop post {
+	padding-bottom: 30px;
+	
+	background: url('images/post-bottom.png') no-repeat center bottom;
 }
+
 
 content header {
 	display: inline-block;
@@ -357,7 +355,6 @@ content header h1 {
 	height: 20px;
 }
 
-
 content header h1 a {
 	color: inherit;
 		display: inline-block;
@@ -365,14 +362,13 @@ content header h1 a {
 	height: 20px;
 	
 }
+
 content header h1 a:hover {	
 	border-bottom: 1px dashed #6c8141;
-		
-	}
-	
+}
 
 content post {
-		position: relative;
+	position: relative;
 }
 
 content header comments {
@@ -380,27 +376,30 @@ content header comments {
 	width: 97px;
 	height: 82px;
 	
-	background: url('images/comments-counter.png') no-repeat;
 	position: absolute;
 	top: 10px;
 	left: -82px;
+	padding-top: 24px;
+	
+	background: url('images/comments-counter.png') no-repeat;
+	
+	font-family: Georgia;
 	text-align: center;
 	color: #101010;
-	font-family: Georgia;
 	font-size: 17pt;
-	padding-top: 24px;
 }
-content header tags	{
 
+content header tags	{
 	display: block;
 
+	line-height: 13px;
+	margin-left: 5px;
+	
+	text-transform: lowercase;
 	color: #5b5b5b;
 	font-weight: bold;
 	font-size: 7pt;
-	line-height: 13px;
 	height: 13px;
-	text-transform: lowercase;
-	margin-left: 5px;
 }
 
 content header tags a {
@@ -412,9 +411,8 @@ content header tags a {
 content header tags a.category {
 font-weight: normal;
 	display: inline-block;
-	clear: both;
 	margin-top: 1px;
-	margin-left: 3px;
+	margin-left: 5px;
 	
 	background: url('images/post-cat-tag-icon.png') no-repeat;
 	height: 13px;
@@ -456,18 +454,20 @@ content post p a {
 	text-decoration: none;
 
 }
-	content post p a {
-		border-bottom: 1px dotted #222;
 
-	}
-		content post p a:visited {
-			color: #d0dbb9;
-		}
+content post p a {
+	border-bottom: 1px dotted #222;
 
-		content post p a:hover {
-			text-decoration: none;
-			color:#c3df8d;
-		}
+}
+
+content post p a:visited {
+	color: #d0dbb9;
+}
+
+content post p a:hover {
+	text-decoration: none;
+	color:#c3df8d;
+}
 
 content post h2 {
 	display: block;
@@ -497,23 +497,148 @@ content post h2 {
 body > comments {
 	display: block;
 	
+	text-align: right;
 	
+	margin-bottom: 30px;
 }
 
 comments comment {
 	display: block;
-	width: 530px;
-	height: 130px;
+	width: 444px;
 	
-	margin-left: -120px;
+	position: relative;
+	margin-left: 55px;
+	margin-top: 40px;
+	padding-top: 45px;
 	
 	background: url('images/comment-top.png') no-repeat top right;
 	
 	text-align: left;
 }
 
-comments comment h2 {
+comments comment h1 {
+	display: block;
+	width: 444px;
+	
+	position: absolute;
+	top: 8px;
+	right: 449px;
+	
+	text-align: right;
+	font-weight: normal;
+}
+
+
+comments comment h1 author {
+	display: inline-block;
+	
+	float: right;
+	padding-top: 6px;
+	
+	background: url('images/comment-author-bar.png') repeat-x 0 32px;
+}
+
+comments comment h1 author a {
+	display: inline-block;
+	height: 26px;
+	
+	float:right;
+	margin-bottom: 4px;
 		
+	text-align: right;
+	text-decoration: none;
+	text-transform: lowercase;
+	font-family: Tahoma, sans-serif;
+	color: #809b4b;
+	font-size: 16pt;
+}
+
+
+comments comment h1 author a:hover {
+	margin-bottom: 3px;
+	
+	border-bottom: 1px dashed #222;
+}
+
+comments comment h1 number {
+	display: inline-block;
+	height: 34px;
+	
+	padding-right: 2px;
+	
+	background: url('images/comment-author-bar.png') repeat-x 0 32px;
+	
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	color: rgba(92,92,92,0.13);
+	font-size: 40pt;
+}
+
+comments comment h1 author avator {
+	display: block;
+	/*width: 23px;
+	height: 18px;*/
+	
+	margin-top: 5px;
+	margin-left: 5px;
+	padding: 3px;
+	
+	background: url('images/comment-avator-default.png');
+	
+	float: right;
+	
+	text-align: center;
+}
+
+comments comment h1 author avator img {
+	display: block;
+	width: 17px;
+	height: 12px;
+	
+}
+
+comments comment h1 author time {
+	display: block;
+	
+	clear: both;
+	margin-top: 2px;
+	
+	text-transform: uppercase;
+	font-size: 6pt;
+	color: #5c5c5c;
+}
+
+
+comments comment content {
+	display: block;
+	
+	margin-bottom: -20px;
+	padding-bottom: 6px;
+	
+	background: url('images/comment-middle.png') repeat-y 0 40px;
+}
+
+
+comments comment footer {
+	display: block;
+	width: 445px;
+	height: 32px;
+	
+	
+	background: url('images/comment-bottom.png') no-repeat 0 16px;
+}
+
+comments comment p {
+	width: 405px;
+	
+	margin-top: -30px;
+	margin-left: -10px;
+	
+	text-align: justify;
+	font-family: Tahoma;
+	color: #aaaaaa;
+	font-size: 8pt;
+	line-height: 13px;
 }
 
 /* Right */
@@ -532,56 +657,56 @@ content > right {
 	
 }
 
-	content > right > sidebar {
-		display: block;
-		width: 300px;
-		background: url('images/menu-border-left.png') no-repeat 2px 10px;
-		padding-top: 30px;
-	}
+content > right > sidebar {
+	display: block;
+	width: 300px;
+	background: url('images/menu-border-left.png') no-repeat 2px 10px;
+	padding-top: 30px;
+}
 
-			content sidebar form {
-				display: block;
-				height: 10px;
-				width: 260px;
-				background: url('images/search-box.png') no-repeat 0 10px;
-				padding-top: 10px;
-				padding-bottom: 25px;
-			}
+content sidebar form {
+	display: block;
+	height: 10px;
+	width: 260px;
+	background: url('images/search-box.png') no-repeat 0 10px;
+	padding-top: 10px;
+	padding-bottom: 25px;
+}
 
 
-			content sidebar input[type=submit] {
-				display: block;
-				height: 15px;
-				width: 15px;
-				background: url('images/search-loupe.png') no-repeat;
-				overflow: hidden;
-				font-size: 300em;
-				border:0 none;
-				
-				float:left;
-				margin-left: 10px;
-				margin-top: 2px;
-				outline:0;
-			}
-			
-			content sidebar input[type=submit]:active {
-				outline: 0;
-			}
+content sidebar input[type=submit] {
+	display: block;
+	height: 15px;
+	width: 15px;
+	background: url('images/search-loupe.png') no-repeat;
+	overflow: hidden;
+	font-size: 300em;
+	border:0 none;
+	
+	float:left;
+	margin-left: 10px;
+	margin-top: 2px;
+	outline:0;
+}
 
-				content sidebar form input[type=text] {
-					background: none;
-					border: 0;
-					margin-left: 5px;
-					width: 180px;
-					height: 16px;
-					margin-top: -6px;
-					
-					
-					font-size: 11pt;
-					font-weight: bold;
-					color: #6c6c6c;
-					font-family: Arial, Tahoma, sans-serif;
-				}
+content sidebar input[type=submit]:active {
+	outline: 0;
+}
+
+content sidebar form input[type=text] {
+	background: none;
+	border: 0;
+	margin-left: 5px;
+	width: 180px;
+	height: 16px;
+	margin-top: -6px;
+	
+	
+	font-size: 11pt;
+	font-weight: bold;
+	color: #6c6c6c;
+	font-family: Arial, Tahoma, sans-serif;
+}
 
 content > right panel {
 	display: block;
@@ -713,14 +838,17 @@ content > right  ul.categories a:hover {
 	border-left: none;
 	margin-left: 0;
 	color: #6c6c6c;
-		background:url('images/menu-category-icon-hover.png') no-repeat 8px 1px ;
+
+	background:url('images/menu-category-icon-hover.png') no-repeat 8px 1px ;
 }
-		content > right  ul.categories a:active {
-			border-left: none;
-			margin-left: 0;
-			color: #6c6c6c;
-				background:url('images/menu-category-icon.png') no-repeat 8px 1px ;
-		}
+
+
+content > right  ul.categories a:active {
+	border-left: none;
+	margin-left: 0;
+	color: #6c6c6c;
+	background:url('images/menu-category-icon.png') no-repeat 8px 1px ;
+}
 
 
 sidebar h2 {
@@ -741,15 +869,18 @@ margin-top: 20px;
 
 }
 
+
 sidebar ul.recent-posts a {
-background:url('images/menu-post-icon.png') no-repeat 7px 1px ;
+	background:url('images/menu-post-icon.png') no-repeat 7px 1px ;
 	font-size: 9pt;
 	font-weight: normal;
 	line-height: 14pt;
 }
-	sidebar ul.recent-posts a:visited , sidebar ul.recent-posts a.visited {
+
+
+sidebar ul.recent-posts a:visited , sidebar ul.recent-posts a.visited {
 	background-image: url('images/menu-post-icon-visited.png');
-	}
+}
 	
 
 

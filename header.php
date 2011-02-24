@@ -133,7 +133,7 @@ function chlimit($text, $limit) {
 
 							$tweet_formated = chlimit($tweet[0]->text, 140);
 					
-							$cache -> set("last-tweet", $tweet_formated, 10 * 60);
+							$cache -> set("last-tweet", $tweet_formated, 10 * 60 * 60); // temp too
 							
 						}
 						
