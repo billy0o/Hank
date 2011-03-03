@@ -622,7 +622,7 @@ comments comment h1 author time {
 comments comment content {
 	display: block;
 	
-	margin-bottom: -20px;
+	margin-bottom: -16px;
 	padding-bottom: 6px;
 	
 	background: url('images/comment-middle.png') repeat-y 0 40px;
@@ -641,7 +641,7 @@ comments comment footer {
 comments comment p {
 	width: 405px;
 	
-	margin-top: -30px;
+	margin-top: -29px;
 	margin-left: -10px;
 	
 	text-align: justify;
