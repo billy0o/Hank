@@ -59,28 +59,33 @@ get_header(); ?>
 							} 
 
 							echo $html;
-
+							
 						?>
+						
+						
+					<?php 
+						ob_start();
+
+						comments_template( '', true );
+
+					    $comments = ob_get_contents();
+					    ob_end_clean();
+
+						endwhile; 
+					?>
 </tags>
-					<?php if($post -> comment_count > 0 || 1 ) {?><comments><?php get_comments_number(); ?></comments><?php } ?>
+					<comments>
+					<?php echo hank_comment("count"); ?></comments>
 				</header>
 				<?php the_content("more »"); ?>
 				<br />
 			</post>
 			
 			
-		<?php 
-		if ( have_comments() ) wp_list_comments( array( 'callback' => 'hank_comment' ) );
-		
-		comments_template( '', true ); 
-
-		endwhile; ?>
 	</left>	
 	<right>
 	<?php get_sidebar(); ?></right>	
 		<br />
-		<comments>
-		<?php hank_comment("view"); ?>
-        </comments>
+		<?php echo $comments; ?>
 </content>
 

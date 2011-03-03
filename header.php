@@ -86,40 +86,6 @@ function chlimit($text, $limit) {
 				<a href="http://twitter.com/billy0o"></a>
 		 		<p>
 		 			<?php 
-						
-						class HankCache {
-							function set($id, $data, $lifetime) {
-								$this -> cache[$id] = array($data, $time + $lifetime);
-								
-								$handle = fopen(dirname(__FILE__) . "/cache.".md5($id), "w+");
-								fwrite($handle, (time() + $lifetime)."\n".serialize($data));
-								fclose($handle);
-							}
-							
-							function get($id) {
-								$file = dirname(__FILE__) . "/cache." . md5($id);
-								
-								if(!file_exists($file)) {
-									return false;
-								}
-								
-								$handle = fopen($file, "r");
-								
-								$freshtime = fgets($handle, 11);
-								
-								
-								if($freshtime < time()) {
-									return false;
-								}
-								
-								$content = file_get_contents($file);
-								
-								list($freshtime, $data) = explode("\n", $content, 2);
-								
-								return unserialize($data);
-							}
-						}
-						
 						$cache = new HankCache();
 						
 						$cached =  $cache -> get("last-tweet");

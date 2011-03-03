@@ -1,5 +1,37 @@
 <?php
 
+class HankCache {
+	function set($id, $data, $lifetime) {
+		$this -> cache[$id] = array($data, $time + $lifetime);
+		
+		$handle = fopen(dirname(__FILE__) . "/cache.".md5($id), "w+");
+		fwrite($handle, (time() + $lifetime)."\n".serialize($data));
+		fclose($handle);
+	}
+	
+	function get($id) {
+		$file = dirname(__FILE__) . "/cache." . md5($id);
+		
+		if(!file_exists($file)) {
+			return false;
+		}
+		
+		$handle = fopen($file, "r");
+		
+		$freshtime = fgets($handle, 11);
+		
+		
+		if($freshtime < time()) {
+		//	return false;
+		}
+		
+		$content = file_get_contents($file);
+		
+		list($freshtime, $data) = explode("\n", $content, 2);
+		
+		return unserialize($data);
+	}
+}
 
 
 function polskaData($time = false, $relative = false) {
@@ -78,8 +110,6 @@ function polskaData($time = false, $relative = false) {
 		$monthsToTime = $year * 12 + $month - 13;
 		$monthsNow = $currentYear * 12 + $currentMonth - 13;
 		
-		return $monthsNow - $monthsToTime;
-		
 		if($monthsNow - $monthsToTime < 2) {
 			return "miesiąc temu";
 		}
@@ -88,9 +118,9 @@ function polskaData($time = false, $relative = false) {
 			$miesiecy = $monthsNow - $monthsToTime;
 			
 			if($miesiecy % 10 < 5) 
-				return $miesiecy. "miesiące temu";
+				return $miesiecy. " miesiące temu";
 			
-			return $miesiecy. "miesięcy temu";
+			return $miesiecy. " miesięcy temu";
 		}
 		
 		if($now - $time < 356 * 3600) return "rok temu";
@@ -126,12 +156,15 @@ function polskaData($time = false, $relative = false) {
 
 function hank_comment($arg)
 {		
-	static $count = 1, $view = "";
+	static $count = 0;
 	
-	if($arg == "view") {
-		
-		echo $view;
+	if($arg == "count") {
+		return $count;
+		return;
 	}
+	
+	
+	$count++;
 	
 	$comment = $arg;
 	
@@ -139,7 +172,6 @@ function hank_comment($arg)
 	$GLOBALS['comment'] = $comment; 
 	
 
-	ob_start();
 	?>
 	
 	<comment <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
@@ -183,9 +215,6 @@ function hank_comment($arg)
 	
 	<?php
 	
-	$view .= ob_get_contents();
-	ob_end_clean();
-	$count++;
 }
 
 
