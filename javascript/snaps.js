@@ -32,8 +32,6 @@ function($arg) {
 // Snaps is a native, fast event implemetation
 // System cover browser events (onload, mouse events, ready) and cunstom events both
 (function($) {
-	var warn = window.console && window.console.warn && console.warn;
-	
 	var Stack = function(stack) {
 		if(stack instanceof Array)	{			
 			Array.prototype.push.apply(this, stack);
@@ -42,13 +40,17 @@ function($arg) {
 		return this;
 	};
 	
+	window.Stack = Stack;
+	
 	Stack.prototype = new Array();
+	
+	var push = Array.prototype.push, slice = Array.prototype.slice;
 	
 	$.extend(Stack.prototype, {
 		length: 0,
 		
 		Push: function(element, position) {
-			var push = Array.prototype.push, slice = Array.prototype.slice, stack = slice.call(this, 0, this.length);
+			var stack = slice.call(this, 0, this.length);
 			
 			this.length = 0;
 			
@@ -87,22 +89,28 @@ function($arg) {
 			
 			if(position > this.length) return true;
 			
-			var push = Array.prototype.push, slice = Array.prototype.slice, stack = slice.call(this, 0, this.length);
+			var stack = this.buildArray();
 			
 			this.length = 0;
 			
 			push.apply(this, slice.call(stack, 0, position));
-			push.apply(this, slice.call(stack, position+1, stack.length));
+			push.apply(this, slice.call(stack, position + 1, stack.length));
 		},
 		
+		// adds element before element at position in argument or element in argument
 		before: function(position) {
-			if (typeof option != "number") {
-				this.indexOf(option) < 0;
+			
+			if (typeof position != "number") {
+				position = this.indexOf(option);
+				
+				if(position < 0) {
+					return false;
+				}
 			}
 			
-			if(position < 0) return false;
+			else if(position > this.length)
+				return false;
 			
-			if(position > this.length) return true;
 			
 		},
 
@@ -128,6 +136,11 @@ function($arg) {
 		
 		actually: function() {
 			
+		},
+		
+		
+		buildArray: function(){
+			return slice.call(this, 0, this.length);
 		}
 	});
 	
