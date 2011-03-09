@@ -25,9 +25,6 @@
 	  };
 	}
 })();
-function($arg) {
-	sdadssdsad
-};
 
 // Snaps is a native, fast event implemetation
 // System cover browser events (onload, mouse events, ready) and cunstom events both
@@ -110,6 +107,19 @@ function($arg) {
 			
 			else if(position > this.length)
 				return false;
+				
+			else if(position < 0){
+				if(position > this.length + 1) 
+					return false;
+					
+				position = this.length - position + 1;
+				
+				
+			}
+			
+				
+			
+			var stack = this.buildArray();
 			
 			
 		},

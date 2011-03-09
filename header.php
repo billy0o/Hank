@@ -30,9 +30,9 @@ function chlimit($text, $limit) {
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_directory' ); ?>/reset.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_directory' ); ?>/main.css" />
-	<script src="<?php bloginfo( 'template_directory' ); ?>/javascript/jquery.css" type="text/javascript" charset="utf-8"></script>
-	<script src="<?php bloginfo( 'template_directory' ); ?>/javascript/snaps.css" type="text/javascript" charset="utf-8"></script>
-	<script src="<?php bloginfo( 'template_directory' ); ?>/javascript/hank.css" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php bloginfo( 'template_directory' ); ?>/javascript/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php bloginfo( 'template_directory' ); ?>/javascript/snaps.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php bloginfo( 'template_directory' ); ?>/javascript/hank.js" type="text/javascript" charset="utf-8"></script>
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<script type="text/javascript" charset="utf-8">
 		document.createElement("header");
